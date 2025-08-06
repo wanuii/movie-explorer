@@ -22,7 +22,7 @@ const HomePage = () => {
             placeholder="搜尋"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="bg-black text-white px-4 py-2 outline-none rounded-l-md w-96"
+            className="bg-black text-white px-4 py-2 outline-none rounded-l-md sm:w-96 w-52"
           />
           <button
             onClick={handleSearch}
@@ -40,7 +40,7 @@ const HomePage = () => {
             alt="icon"
             className="h-6 w-6 cursor-pointer"
           />
-          <p className="text-white">我的收藏</p>
+          <p className="text-white hidden sm:flex">我的收藏</p>
         </button>
       </div>
       <div>
