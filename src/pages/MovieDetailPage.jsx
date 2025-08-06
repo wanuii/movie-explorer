@@ -1,11 +1,15 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getMovieById } from "@/api/movie";
-import PageStatus from "@/components/PageStatus";
 import Rating from "react-rating";
+import { useFavorites } from "@/store/useFavorites";
+import { getMovieById } from "@/api/movie";
+import CollectIcon from "@/assets/CollectIcon.svg";
+import CollectedIcon from "@/assets/CollectedIcon.svg";
+import PageStatus from "@/components/PageStatus";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
+  const { toggleFavorite, isFavorited } = useFavorites();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,17 +36,39 @@ const MovieDetailPage = () => {
             <h1 className="text-2xl font-bold mb-2 block sm:hidden">
               {movie?.Title}
             </h1>
-            <img
-              src={movie?.Poster}
-              alt={movie?.Title}
-              className="w-full h-auto rounded"
-            />
+            <div className="relative">
+              <img
+                src={movie?.Poster}
+                alt={movie?.Title}
+                className="w-full h-auto rounded"
+              />
+              <button
+                className="absolute bottom-1 right-1 p-1"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(movie);
+                }}
+              >
+                <img
+                  src={isFavorited(movie.imdbID) ? CollectedIcon : CollectIcon}
+                  alt="收藏"
+                  className="w-10 h-10"
+                />
+              </button>
+            </div>
           </div>
           <div className="flex flex-col sm:flex-row">
             <div className="relative z-10 flex flex-col gap-2 xl:pr-[420px]">
-              <h1 className="text-2xl font-bold hidden sm:block pb-5">
-                {movie.Title}
-              </h1>
+              <div className="gap-2 items-center hidden sm:flex">
+                <button onClick={() => toggleFavorite({ imdbID: id })}>
+                  <img
+                    src={isFavorited(id) ? CollectedIcon : CollectIcon}
+                    alt="收藏"
+                    className="w-8 h-8"
+                  />
+                </button>
+                <h1 className="text-2xl font-bold">{movie.Title}</h1>
+              </div>
               <p className="text-gray-300">{movie.Rated}</p>
               <p className="text-gray-300">
                 {movie.Released} • {movie.Runtime} • 語言：{movie.Language}

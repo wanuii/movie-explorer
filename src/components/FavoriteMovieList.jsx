@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import MovieList from "./MovieList";
-import Pagination from "./Pagination";
 import { useFavorites } from "@/store/useFavorites";
 import { getMovieById } from "@/api/movie";
 import PageStatus from "@/components/PageStatus";
+import MovieList from "./MovieList";
+import Pagination from "./Pagination";
 
 const itemsPerPage = 30;
 

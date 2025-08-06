@@ -1,7 +1,7 @@
-import CollectIcon from "@/assets/CollectIcon.svg";
-import CollectedIcon from "@/assets/CollectedIcon.svg";
 import { useNavigate } from "react-router-dom";
 import { useFavorites } from "@/store/useFavorites";
+import CollectIcon from "@/assets/CollectIcon.svg";
+import CollectedIcon from "@/assets/CollectedIcon.svg";
 
 const MovieList = ({ movies }) => {
   const navigate = useNavigate();
