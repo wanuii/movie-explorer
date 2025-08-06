@@ -87,17 +87,10 @@ VITE_OMDB_API_KEY=your_api_key_here
 
 ---
 
-## ▶️ 開發 & 執行
+## ▶️ 啟動方式
 
 ```bash
-# 啟動開發伺服器
 npm run dev
-
-# 打包部署用靜態檔案
-npm run build
-
-# 預覽本地打包結果
-npm run preview
 ```
 
 ---
